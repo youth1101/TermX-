@@ -1,19 +1,15 @@
 <template>
   <div>
-    <a-row id="globalHeader" class="grid-demo" style="margin-bottom: 16px" align="center">
+    <a-row id="globalHeader" align="center" :wrap="false">
       <a-col flex="auto">
         <div>
-          <a-menu
-            mode="horizontal"
-            :selected-keys="selectedKeys"
-            @menu-item-click="doMenuClick"
-          >
+          <a-menu mode="horizontal" :selected-keys="selectedKeys" @menu-item-click="doMenuClick">
             <a-menu-item key="0" :style="{ padding: 0, marginRight: '38px' }" disabled>
               <div class="title-bar">
                 <img class="logo" src="@/assets/logo.svg" />
               </div>
             </a-menu-item>
-            <a-menu-item v-for="item in routes" :key="item.path">
+            <a-menu-item v-for="item in visibleRoutes" :key="item.path">
               {{ item.name }}
             </a-menu-item>
           </a-menu>
@@ -35,6 +31,15 @@ import { useUserStore } from '@/stores/user'
 
 const router = useRouter()
 const store = useUserStore()
+
+// 展示在菜单的路由数组
+const visibleRoutes = routes.filter((item, index) => {
+  if (item.meta?.hideInMenu) {
+    return false
+  }
+
+  return true
+})
 // 默认主页
 const selectedKeys = ref(['/'])
 

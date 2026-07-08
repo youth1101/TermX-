@@ -4,12 +4,21 @@ import HomeView from '@/views/HomeView.vue'
 import AboutView from '@/views/AboutView.vue'
 import AdminView from '@/views/AdminView.vue'
 import NoAuthView from '@/views/NoAuthView.vue'
+import HideView from '@/views/HideView.vue'
 
 export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: '浏览题目',
     component: HomeView,
+  },
+  {
+    path: '/hide',
+    name: '隐藏页面',
+    component: HideView,
+    meta: {
+      hideInMenu: true,
+    },
   },
   {
     path: '/noAuth',
