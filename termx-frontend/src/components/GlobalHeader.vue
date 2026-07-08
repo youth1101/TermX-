@@ -5,7 +5,7 @@
         <div>
           <a-menu
             mode="horizontal"
-            :default-selected-keys="selectedKeys"
+            :selected-keys="selectedKeys"
             @menu-item-click="doMenuClick"
           >
             <a-menu-item key="0" :style="{ padding: 0, marginRight: '38px' }" disabled>
