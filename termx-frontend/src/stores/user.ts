@@ -4,6 +4,7 @@ import { ref } from 'vue'
 export const useUserStore = defineStore('user', () => {
   const loginUser = ref({
     userName: '未登录',
+    role: 'notLogin',
   })
 
   function updateUser(payload: any) {

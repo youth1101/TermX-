@@ -1,13 +1,28 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-import HomeView from '@/components/HomeView.vue'
-import AboutView from '@/components/AboutView.vue'
+import HomeView from '@/views/HomeView.vue'
+import AboutView from '@/views/AboutView.vue'
+import AdminView from '@/views/AdminView.vue'
+import NoAuthView from '@/views/NoAuthView.vue'
 
 export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: '浏览题目',
     component: HomeView,
+  },
+  {
+    path: '/noAuth',
+    name: '无权限访问',
+    component: NoAuthView,
+  },
+  {
+    path: '/admin',
+    name: '管理员可见',
+    component: AdminView,
+    meta: {
+      access: 'canAdmin',
+    },
   },
   {
     path: '/about',

@@ -21,7 +21,7 @@
       </a-col>
 
       <a-col flex="100px">
-        <div>鱼皮</div>
+        <div>{{ store?.loginUser?.userName ?? '未登录' }}</div>
       </a-col>
     </a-row>
   </div>
@@ -31,9 +31,10 @@
 import { routes } from '@/router/routes'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
+import { useUserStore } from '@/stores/user'
 
 const router = useRouter()
-
+const store = useUserStore()
 // 默认主页
 const selectedKeys = ref(['/'])
 
@@ -41,6 +42,13 @@ const selectedKeys = ref(['/'])
 router.afterEach((to, from, failure) => {
   selectedKeys.value = [to.path]
 })
+
+// setTimeout(() => {
+//   store.getLoginUser({
+//     userName: '鱼皮',
+//     role: 'admin',
+//   })
+// }, 3000)
 
 const doMenuClick = (key: string) => {
   router.push({
