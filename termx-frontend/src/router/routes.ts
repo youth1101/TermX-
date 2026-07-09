@@ -5,6 +5,7 @@ import AboutView from '@/views/AboutView.vue'
 import AdminView from '@/views/AdminView.vue'
 import NoAuthView from '@/views/NoAuthView.vue'
 import HideView from '@/views/HideView.vue'
+import ACCESS_ENUM from '@/access/accessEnum'
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -30,7 +31,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: '管理员可见',
     component: AdminView,
     meta: {
-      access: 'canAdmin',
+      access: ACCESS_ENUM.ADMIN,
     },
   },
   {

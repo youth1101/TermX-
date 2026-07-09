@@ -26,19 +26,26 @@
 <script setup lang="ts">
 import { routes } from '@/router/routes'
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useUserStore } from '@/stores/user'
+import checkAccess from '@/access/checkAccess'
+import ACCESS_ENUM from '@/access/accessEnum'
 
 const router = useRouter()
 const store = useUserStore()
 
 // 展示在菜单的路由数组
-const visibleRoutes = routes.filter((item, index) => {
-  if (item.meta?.hideInMenu) {
-    return false
-  }
-
-  return true
+const visibleRoutes = computed(() => {
+  return routes.filter((item, index) => {
+    if (item.meta?.hideInMenu) {
+      return false
+    }
+    // 根据权限过滤菜单
+    if (!checkAccess(store.loginUser, item?.meta?.access as string)) {
+      return false
+    }
+    return true
+  })
 })
 // 默认主页
 const selectedKeys = ref(['/'])
@@ -48,12 +55,9 @@ router.afterEach((to, from, failure) => {
   selectedKeys.value = [to.path]
 })
 
-// setTimeout(() => {
-//   store.getLoginUser({
-//     userName: '鱼皮',
-//     role: 'admin',
-//   })
-// }, 3000)
+setTimeout(() => {
+  store.getLoginUser({ userName: '鱼皮管理员', userRole: ACCESS_ENUM.ADMIN })
+}, 3000)
 
 const doMenuClick = (key: string) => {
   router.push({

@@ -1,10 +1,11 @@
+import ACCESS_ENUM from '@/access/accessEnum'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useUserStore = defineStore('user', () => {
   const loginUser = ref({
     userName: '未登录',
-    role: 'notLogin',
+    userRole: ACCESS_ENUM.NOT_LOGIN,
   })
 
   function updateUser(payload: any) {
@@ -12,7 +13,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   function getLoginUser(payload?: any) {
-    updateUser({ userName: '鱼皮' })
+    updateUser(payload)
   }
 
   return {
