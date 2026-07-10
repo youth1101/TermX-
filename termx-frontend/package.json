@@ -12,10 +12,12 @@
     "lint": "run-s \"lint:*\"",
     "lint:oxlint": "oxlint . --fix",
     "lint:eslint": "eslint . --fix --cache",
-    "format": "prettier --write --experimental-cli src/"
+    "format": "prettier --write --experimental-cli src/",
+    "generate-api": "curl -s http://localhost:8101/api/v3/api-docs/default -o /tmp/openapi-spec.json && openapi --input /tmp/openapi-spec.json --output ./generated --client axios"
   },
   "dependencies": {
     "@arco-design/web-vue": "^2.58.0",
+    "axios": "^1.18.1",
     "pinia": "^3.0.4",
     "vue": "^3.5.38",
     "vue-router": "^5.1.0"
@@ -32,6 +34,7 @@
     "eslint-plugin-vue": "~10.9.2",
     "jiti": "^2.7.0",
     "npm-run-all2": "^9.0.2",
+    "openapi-typescript-codegen": "^0.31.0",
     "oxlint": "~1.69.0",
     "prettier": "3.8.4",
     "typescript": "~6.0.0",

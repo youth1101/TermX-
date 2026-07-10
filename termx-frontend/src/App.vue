@@ -9,12 +9,14 @@ import BasicLayout from '@/layouts/BasicLayout.vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { onMounted } from 'vue'
+import axios from 'axios'
 
 /**
  * 全局初始化函数，在全局单次调用的代码都可以写到这里
  */
 const doInit = () => {
   console.log('Terx在线编程判题系统系统')
+  axios.get('')
 }
 onMounted(() => {
   doInit()
