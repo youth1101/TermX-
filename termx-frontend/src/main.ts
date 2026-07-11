@@ -4,6 +4,7 @@ import ArcoVue from '@arco-design/web-vue'
 import '@arco-design/web-vue/dist/arco.css'
 import App from './App.vue'
 import router from './router'
+import '@/plugins/axios.ts'
 
 const app = createApp(App)
 
